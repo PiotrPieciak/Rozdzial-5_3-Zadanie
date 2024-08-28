@@ -4,23 +4,23 @@ fake = Faker()
 
 #Definiujemy klase na podstawie której bedą tworzone instancje dla kontaktów podstawowych
 class BaseContact:
-   def __init__(self, name, surname, private_phone, e_mail):
-       self.name = name
-       self.surname = surname
-       self.private_phone = private_phone
-       self.e_mail = e_mail
+    def __init__(self, name, surname, private_phone, e_mail):
+        self.name = name
+        self.surname = surname
+        self.private_phone = private_phone
+        self.e_mail = e_mail
 
-   def __str__(self):
+    def __str__(self):
         return f'{self.name} {self.surname}'
    
 #Definiujemy funkcję w klasie która bedzie która w konsoli bedzie wyświetlała napis wymagany dla wizytówki prywatnej
-   def contact(self):
-       print("Wybieram numer ", self.private_phone, " i dzwonię do ", self.name, self.surname)
+    def contact(self):
+        print("Wybieram numer ", self.private_phone, " i dzwonię do ", self.name, self.surname)
 
 #definiujemy dynamiczny atrybut label_length, który zwraca długość imienia i nazwiska danej osoby dla wizytówek prywatnych
-   @property
-   def label_length(self):
-       return len(self.name) + len(self.surname)
+    @property
+    def label_length(self):
+        return len(self.name) + len(self.surname)
 
 #Definiujemy klase na podstawie której bedą tworzone instancje dla kontaktów biznesowych 
 class BusinessContact(BaseContact):
@@ -31,18 +31,18 @@ class BusinessContact(BaseContact):
         self.company_phone = company_phone
     
     def contact(self):
-       print("Wybieram numer ", self.company_phone, " i dzwonię do ", self.name, self.surname)
+        print("Wybieram numer ", self.company_phone, " i dzwonię do ", self.name, self.surname)
 
 #definicja funkcji która pobiera 2 zmienne wprowadzone przez użytkownika i na tej podstawie tworzy listę biznesową lub prywatną wypełnioną ilością wizytówek zadeklarowaną
 #przez użytkownika. Zwraca listę wizytówek.
 def create_contacts(number_of_gen_cards,priv_or_busin):
-        temp_cards_list = []
-        for i in range(number_of_gen_cards):
-            if priv_or_busin == "P":
-                temp_cards_list.append(BaseContact(name=fake.first_name(), surname=fake.last_name(), private_phone=fake.phone_number(), e_mail=fake.email()))
-            else:
-                temp_cards_list.append(BusinessContact(name=fake.first_name(), surname=fake.last_name(), private_phone=fake.phone_number(), e_mail=fake.email() ,position=fake.job(), company=fake.company(), company_phone = fake.phone_number()))
-        return temp_cards_list      
+    temp_cards_list = []
+    for i in range(number_of_gen_cards):
+        if priv_or_busin == "P":
+            temp_cards_list.append(BaseContact(name=fake.first_name(), surname=fake.last_name(), private_phone=fake.phone_number(), e_mail=fake.email()))
+        else:
+            temp_cards_list.append(BusinessContact(name=fake.first_name(), surname=fake.last_name(), private_phone=fake.phone_number(), e_mail=fake.email() ,position=fake.job(), company=fake.company(), company_phone = fake.phone_number()))
+    return temp_cards_list      
 
 #Funkcja wyświetlająca informację o wprowadzeniu niepoprawnych danych przez użytkownika, gdy program np oczekuje "P" lub "B" a użytkownik wpisuje inne dane   
 def wrong_number():
@@ -108,7 +108,7 @@ if __name__ == "__main__":
     #W przypadku wybrania 1 program Ponumeruje i wyświetli dane wszystkich wizytówek w osobnych liniach 
         if activity == 1:
             for i in range(len(card_list)):   
-                    print("%d. " %(i+1), card_list[i])
+                print("%d. " %(i+1), card_list[i])
 
     #W przypadku wybrania 2 program "zadzwoni" do jednej osoby której numer podano w poprzedniej opcji, tj 1,2,3,4,5 itd
         elif activity == 2:
